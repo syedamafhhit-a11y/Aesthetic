@@ -1241,28 +1241,33 @@
 </div>
 
 <script>
-function acceptCookies() {
-  localStorage.setItem("cookies", "accepted");
-  hideAll();
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const banner = document.getElementById("cookie-banner");
+  const modal = document.getElementById("cookie-modal");
 
-function rejectCookies() {
-  localStorage.setItem("cookies", "rejected");
-  hideAll();
-}
+  function hideAll() {
+    if (banner) banner.style.display = "none";
+    if (modal) modal.style.display = "none";
+  }
 
-function manageCookies() {
-  document.getElementById("cookie-modal").style.display = "block";
-}
+  window.acceptCookies = function () {
+    localStorage.setItem("cookies", "accepted");
+    hideAll();
+  };
 
-function hideAll() {
-  document.getElementById("cookie-banner").style.display = "none";
-  document.getElementById("cookie-modal").style.display = "none";
-}
+  window.rejectCookies = function () {
+    localStorage.setItem("cookies", "rejected");
+    hideAll();
+  };
 
-if (localStorage.getItem("cookies")) {
-  hideAll();
-}
+  window.manageCookies = function () {
+    if (modal) modal.style.display = "block";
+  };
+
+  if (localStorage.getItem("cookies")) {
+    hideAll();
+  }
+});
 </script>
 </body>
 </html>
