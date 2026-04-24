@@ -1233,7 +1233,6 @@
   <button onclick="acceptCookies()">Accept All</button>
   <button onclick="rejectCookies()">Reject All</button>
 </div>
-
 <script>
 function acceptCookies() {
   localStorage.setItem("cookies", "accepted");
@@ -1250,7 +1249,9 @@ function manageCookies() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
- 
+  if (localStorage.getItem("cookies")) {
+    document.getElementById("cookie-banner").style.display = "none";
+  }
 });
 </script>
 </body>
