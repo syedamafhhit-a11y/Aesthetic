@@ -1255,6 +1255,21 @@
   <button id="rejectAll">Reject All</button>
 </div>
 
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
+  <span>We use cookies to improve your experience.</span>
+  <div>
+    <button id="acceptBtn">Accept</button>
+    <button id="rejectBtn">Reject</button>
+    <button id="manageBtn">Manage</button>
+  </div>
+</div>
+
+<div id="cookie-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#000;padding:20px;z-index:10000;">
+  <h3>Manage Cookies</h3>
+  <button id="acceptAll">Accept All</button>
+  <button id="rejectAll">Reject All</button>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const banner = document.getElementById("cookie-banner");
@@ -1265,26 +1280,26 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = "none";
   }
 
-  document.getElementById("acceptBtn").onclick = function () {
+  document.getElementById("acceptBtn").onclick = () => {
     localStorage.setItem("cookies", "accepted");
     hideAll();
   };
 
-  document.getElementById("rejectBtn").onclick = function () {
+  document.getElementById("rejectBtn").onclick = () => {
     localStorage.setItem("cookies", "rejected");
     hideAll();
   };
 
-  document.getElementById("manageBtn").onclick = function () {
+  document.getElementById("manageBtn").onclick = () => {
     modal.style.display = "block";
   };
 
-  document.getElementById("acceptAll").onclick = function () {
+  document.getElementById("acceptAll").onclick = () => {
     localStorage.setItem("cookies", "accepted");
     hideAll();
   };
 
-  document.getElementById("rejectAll").onclick = function () {
+  document.getElementById("rejectAll").onclick = () => {
     localStorage.setItem("cookies", "rejected");
     hideAll();
   };
