@@ -1219,69 +1219,37 @@
     </div>
   </div>
 </footer>
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
-  <span>We use cookies to improve your experience.</span>
-  <button onclick="acceptCookies()" style="background:#fff;color:#000;padding:8px 12px;border:none;cursor:pointer;">Accept</button>
-</div>
-
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
+  <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
   <span>We use cookies to improve your experience.</span>
   <div>
-    <button onclick="acceptCookies()" style="margin-right:10px;background:#fff;color:#000;padding:8px 12px;border:none;cursor:pointer;">Accept</button>
-    <button onclick="rejectCookies()" style="margin-right:10px;background:#444;color:#fff;padding:8px 12px;border:none;cursor:pointer;">Reject</button>
-    <button onclick="manageCookies()" style="background:#888;color:#fff;padding:8px 12px;border:none;cursor:pointer;">Manage</button>
+    <button onclick="acceptCookies()" style="margin-right:10px;">Accept</button>
+    <button onclick="rejectCookies()" style="margin-right:10px;">Reject</button>
+    <button onclick="manageCookies()">Manage</button>
   </div>
 </div>
 
 <div id="cookie-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#000;padding:20px;z-index:10000;">
   <h3>Manage Cookies</h3>
-  <p>You can choose which cookies to allow.</p>
   <button onclick="acceptCookies()">Accept All</button>
   <button onclick="rejectCookies()">Reject All</button>
-</div>
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
-  <span>We use cookies to improve your experience.</span>
-  <div>
-    <button id="acceptBtn" style="margin-right:10px;background:#fff;color:#000;padding:8px 12px;border:none;cursor:pointer;">Accept</button>
-    <button id="rejectBtn" style="margin-right:10px;background:#444;color:#fff;padding:8px 12px;border:none;cursor:pointer;">Reject</button>
-    <button id="manageBtn" style="background:#888;color:#fff;padding:8px 12px;border:none;cursor:pointer;">Manage</button>
-  </div>
-</div>
-
-<div id="cookie-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#000;padding:20px;z-index:10000;">
-  <h3>Manage Cookies</h3>
-  <p>You can choose which cookies to allow.</p>
-  <button id="acceptAll">Accept All</button>
-  <button id="rejectAll">Reject All</button>
-</div>
-
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
-  <span>We use cookies to improve your experience.</span>
-  <div>
-    <button id="acceptBtn">Accept</button>
-    <button id="rejectBtn">Reject</button>
-    <button id="manageBtn">Manage</button>
-  </div>
-</div>
-
-<div id="cookie-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#000;padding:20px;z-index:10000;">
-  <h3>Manage Cookies</h3>
-  <button id="acceptAll">Accept All</button>
-  <button id="rejectAll">Reject All</button>
-</div>
-
-<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
-  <span>We use cookies to improve your experience.</span>
-  <button onclick="acceptCookies()" style="background:#fff;color:#000;padding:8px 12px;border:none;cursor:pointer;">Accept</button>
 </div>
 
 <script>
 function acceptCookies() {
+  localStorage.setItem("cookies", "accepted");
   document.getElementById("cookie-banner").style.display = "none";
-  localStorage.setItem("cookiesAccepted", "true");
 }
 
-if (localStorage.getItem("cookiesAccepted")) {
+function rejectCookies() {
+  localStorage.setItem("cookies", "rejected");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+
+function manageCookies() {
+  document.getElementById("cookie-modal").style.display = "block";
+}
+
+if (localStorage.getItem("cookies")) {
   document.getElementById("cookie-banner").style.display = "none";
 }
 </script>
