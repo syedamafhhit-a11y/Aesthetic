@@ -1239,6 +1239,21 @@
   <button onclick="acceptCookies()">Accept All</button>
   <button onclick="rejectCookies()">Reject All</button>
 </div>
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#111;color:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center;z-index:9999;">
+  <span>We use cookies to improve your experience.</span>
+  <div>
+    <button id="acceptBtn" style="margin-right:10px;background:#fff;color:#000;padding:8px 12px;border:none;cursor:pointer;">Accept</button>
+    <button id="rejectBtn" style="margin-right:10px;background:#444;color:#fff;padding:8px 12px;border:none;cursor:pointer;">Reject</button>
+    <button id="manageBtn" style="background:#888;color:#fff;padding:8px 12px;border:none;cursor:pointer;">Manage</button>
+  </div>
+</div>
+
+<div id="cookie-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#000;padding:20px;z-index:10000;">
+  <h3>Manage Cookies</h3>
+  <p>You can choose which cookies to allow.</p>
+  <button id="acceptAll">Accept All</button>
+  <button id="rejectAll">Reject All</button>
+</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -1246,22 +1261,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("cookie-modal");
 
   function hideAll() {
-    if (banner) banner.style.display = "none";
-    if (modal) modal.style.display = "none";
+    banner.style.display = "none";
+    modal.style.display = "none";
   }
 
-  window.acceptCookies = function () {
+  document.getElementById("acceptBtn").onclick = function () {
     localStorage.setItem("cookies", "accepted");
     hideAll();
   };
 
-  window.rejectCookies = function () {
+  document.getElementById("rejectBtn").onclick = function () {
     localStorage.setItem("cookies", "rejected");
     hideAll();
   };
 
-  window.manageCookies = function () {
-    if (modal) modal.style.display = "block";
+  document.getElementById("manageBtn").onclick = function () {
+    modal.style.display = "block";
+  };
+
+  document.getElementById("acceptAll").onclick = function () {
+    localStorage.setItem("cookies", "accepted");
+    hideAll();
+  };
+
+  document.getElementById("rejectAll").onclick = function () {
+    localStorage.setItem("cookies", "rejected");
+    hideAll();
   };
 
   if (localStorage.getItem("cookies")) {
