@@ -1249,9 +1249,11 @@ function manageCookies() {
   document.getElementById("cookie-modal").style.display = "block";
 }
 
-if (localStorage.getItem("cookies")) {
-  document.getElementById("cookie-banner").style.display = "none";
-}
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("cookies")) {
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+});
 </script>
 </body>
 </html>
